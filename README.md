@@ -153,5 +153,51 @@ SET PERSIST max_connections = 200;
       REVOKE INSERT ON employees FROM 'john'@'localhost';
       ```
 
-- **역할(Role) 관리**
+- **역할(Role) 관리** : 역할(Role)은 여러 권한을 묶어서 사용자에게 부여하는 방식. 이를 통해 동일한 권한 집합을 가진 여러 사용자들을 쉽게 관리할 수 있다. 역할을 사용하면 특정 권한 집합을 가진 사용자를 그룹화하여, 효율적으로 관리할 수 있다.
 
+  - 역할 생성
+    ```sql
+    CREATE ROLE 'role_name';
+    ```
+  - 역할에 권한 부여
+    ```sql
+    GRANT SELECT, INSERT ON database_name.table_name TO 'role_name';
+    ```
+  - 사용자에게 역할 부여
+    ```sql
+    GRANT 'role_name' TO 'username'@'hostname';
+    ```
+  - 역할 삭제
+    ```sql
+    DROP ROLE 'role_name';
+    ```
+
+- **권한 조회 및 확인** : SHOW GRANTS 명령어를 사용하여 특정 사용자가 가지고 있는 권한 목록 확인 가능.
+  ```sql
+  SHOW GRANTS FOR 'username'@'hostname';
+  ```
+
+- **최고 권한 사용자(SUPER User)**
+  - 최고 권한 사용자는 모든 사용자에 대한 권한을 수정하고, 데이터베이스 시스템을 제어할 수 있는 특별한 권한을 가진다.
+  - 하지만 보안상 root 계정의 사용을 최소화하고, 가능한 범위 내에서 세분화된 권한을 사용자에게 부여하는 것이 권장됨.
+
+  - ***최소 권한 부여*** : 사용자가 작업을 수행하는 데 필요한 최소한의 권한만을 부여한다.
+  - ***정기적인 권한 검토*** : 사용자의 권한을 주기적으로 검토하여, 불필요하게 부여된 권한을 철회하고 권한 오남용을 방지한다.
+  - ***비밀번호 관리*** : 사용자 계정의 비밀번호는 주기적으로 변경해야 하며, 비밀번호 정책을 설정해 복잡도를 높이고 보안성을 강화한다.
+  - ***로그 및 감사*** : 사용자가 수행한 작업을 기록하는 **감사 로그(audit log)** 를 통해 누가 어떤 작업을 했는지 추적할 수 있도록 설정하는 것이 중요하다.
+
+
+#### **요약예시예시요약**
+  - 사용자 생성 및 권한 부여 예시
+    - 사용자 alice에게 특정 데이터베이스에서 SELECT와 UPDATE 권한 부여.
+      ```sql
+      CREATE USER 'alice'@'localhost' IDENTIFIED BY 'securepassword';
+      GRANT SELECT, UPDATE ON my_database.* TO 'alice'@'localhost';
+      ```
+    
+    - 사용자 bob에게 모든 권한을 부여한 후 DELETE 권한만 철회.
+      ```sql
+      CREATE USER 'bob'@'localhost' IDENTIFIED BY 'strongpassword';
+      GRANT ALL PRIVILEGES ON my_database.* TO 'bob'@'localhost';
+      REVOKE DELETE ON my_database.* FROM 'bob'@'localhost';
+      ```
