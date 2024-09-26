@@ -201,3 +201,16 @@ SET PERSIST max_connections = 200;
       GRANT ALL PRIVILEGES ON my_database.* TO 'bob'@'localhost';
       REVOKE DELETE ON my_database.* FROM 'bob'@'localhost';
       ```
+
+    - 역할 read_only_role을 생성하고, 사용자 charlie에게 이 역할을 부여.
+      ```sql
+      CREATE ROLE 'read_only_role';
+      GRANT SELECT ON my_database.* TO 'read_only_role';
+      GRANT 'read_only_role' TO 'charlie'@'localhost';
+      ```
+
+  - 요약
+    - 사용자 관리 : 데이터베이스에서 각 사용자 계정을 생성하고 비밀번호를 설정.
+    - 권한 관리 : GRANT와 REVOKE를 통해 사용자에게 필요한 권한을 부여하거나 철회한다.
+    - 역할 관리 : 여러 권한을 묶어서 역할로 관리하고, 사용자에게 역할을 부여함으로써 권한을 효율적으로 관리.
+    - 보안 : 최소 권한 원칙을 준수하고, 권한을 정기적으로 검토하여 보안 위험을 줄인다.
