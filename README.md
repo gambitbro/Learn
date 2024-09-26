@@ -97,13 +97,13 @@ SET PERSIST max_connections = 200;
 - **사용자 계정 관리**
   - ***사용자 계정 생성*** : DBMS에서는 CREATE USER 명령어를 통해 새로운 사용자 계정을 생성할 수 있다.
 
-  ```sql
-  CREATE USER 'username'@'hostname' IDENTIFIED BY 'password';
-  ```
+    ```sql
+    CREATE USER 'username'@'hostname' IDENTIFIED BY 'password';
+    ```
 
-  - 'username' : 새로 생성할 사용자 계정의 이름.
-  - 'hostname' : 사용자가 어느 호스트에서 접근할 수 있는지 지정. 보통 localhost로 지정하면 로컬 시스템에서만 접근이 가능하다.
-  - 'password' : 사용자의 비밀번호를 설정.
+    - 'username' : 새로 생성할 사용자 계정의 이름.
+    - 'hostname' : 사용자가 어느 호스트에서 접근할 수 있는지 지정. 보통 localhost로 지정하면 로컬 시스템에서만 접근이 가능하다.
+    - 'password' : 사용자의 비밀번호를 설정.
 
   - ***사용자 계정 삭제*** : 불필요한 사용자는 DROP USER 명령어로 삭제 가능.
     ```sql
