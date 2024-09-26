@@ -1,6 +1,6 @@
 # Learn
 
-## 2024.09.23, 월, DB
+## 2024.09.23., 월, DB
 
   - **⚛️트랜잭션(Transaction)**
     - 트랜잭션은 데이터베이스의 상태를 변화시키는 일련의 작업, 하나의 논리적인 작업 단위로 취급.
@@ -20,7 +20,7 @@
     - **D**urability(지속성)
       - 트랜잭션이 성공적으로 완료되면, 그 결과는 영구적으로 저장되어 시스템이 실패하더라도 보존되는 특성. 예를 들어, 서버가 다운되거나 시스템 오류가 발생해도 트랜잭션에 의해 변경된 데이터는 손실되지 않아야 한다.
   
-## 2024.09.24, 화, DB
+## 2024.09.24., 화, DB
 
 ### 👻**데이터베이스의 아키텍처(Architecture)**
 
@@ -75,7 +75,7 @@
     - 데이터베이스 아키텍처는 **논리적 아키텍처**와 **물리적 아키텍처**로 나누어 이해할 수 있다. 논리적 아키텍처는 사용자와 데이터베이스 간의 상호작용을 설명하고, 물리적 아키텍처는 데이터가 실제로 어떻게 저장되고 처리되는지를 다룬다. 각종 DBMS 시스템에서는 이러한 아키텍처에 따라 데이터의 일관성, 성능, 확장성, 보안을 보장하며, 최신 클라우드 기반 시스템에서는 자동화와 확장성에 중점을 두고 설계된다.
 
 
-## 2024.09.25, 수, DB
+## 2024.09.25., 수, DB
 
 - SET PERSIST는 MySQL 8.0 이상 버전에서 사용되는 명령어. 시스템 변수를 **영구적으로 변경**하기 위해 사용된다. 즉, 데이터베이스 서버를 재시작하더라도 설정된 시스템 변수가 유지되도록 설정할 수 있다. 이 명령어는 기존의 SET 명령어와 달리, 설정된 값을 **MySQL 설정 파일**에 자동으로 기록해준다.
 
@@ -87,3 +87,71 @@
 // max_connections 값을 영구적으로 변경.
 SET PERSIST max_connections = 200;
 ```
+
+
+
+## 2024.09.26., 목, DB
+
+### 😎**사용자 및 권한 관리**
+
+- **사용자 계정 관리**
+  - ***사용자 계정 생성*** : DBMS에서는 CREATE USER 명령어를 통해 새로운 사용자 계정을 생성할 수 있다.
+
+  ```sql
+  CREATE USER 'username'@'hostname' IDENTIFIED BY 'password';
+  ```
+
+  - 'username' : 새로 생성할 사용자 계정의 이름.
+  - 'hostname' : 사용자가 어느 호스트에서 접근할 수 있는지 지정. 보통 localhost로 지정하면 로컬 시스템에서만 접근이 가능하다.
+  - 'password' : 사용자의 비밀번호를 설정.
+
+  - ***사용자 계정 삭제*** : 불필요한 사용자는 DROP USER 명령어로 삭제 가능.
+    ```sql
+    DROP USER 'username'@'hostname';
+    ```
+
+  - ***사용자 비밀번호 변경*** : ALTER USER
+    ```sql
+    ALTER USER 'username'@'hostname' IDENTIFIED BY 'new_password';
+    ```
+
+- **권한(Privileges) 관리**
+  - 각 사용자에게는 데이터베이스 객체에 대해 읽기, 쓰기, 수정, 삭제 등의 권한을 부여할 수 있다. 이 권한은 특정 데이터베이스, 테이블, 열(Column), 또는 다른 객체들에 대해 제한적으로 부여할 수 있다.
+
+  - ***주요 권한 종류***
+    - ALL PRIVILEGES : 사용자가 데이터베이스 내에서 모든 작업을 수행할 수 있는 권한을 부여.
+    - SELECT : 테이블에서 데이터를 읽을 수 있는 권한.
+    - INSERT : 테이블에서 데이터를 삽입할 수 있는 권한.
+    - UPDATE : 테이블의 데이터를 수정할 수 있는 권한.
+    - DELETE : 테이블에서 데이터를 삭제할 수 있는 권한.
+    - CREATE : 새로운 테이블, 데이터베이스, 인덱스 등을 생성할 수 있는 권한.
+    - ALTER : 기존 테이블이나 객체의 구조를 변경할 수 있는 권한.
+    - DROP : 테이블이나 데이터베이스 등의 객체를 삭제할 수 있는 권한.
+    - GRANT OPTION : 다른 사용자에게 자신이 가지고 있는 권한을 부여할 수 있는 권한.
+
+  - ***권한 부여*** : GRANT 명령어 사용.
+    ```sql
+    GRANT SELECT, INSERT ON database_name.table_name TO 'username'@'hostname';
+    ```
+    - 'database_name.table_name' : 권한을 부여할 데이터베이스와 테이블.
+
+    - john에게 employees테이블에 대해 읽고 쓰기 권한 부여하기.
+      ```sql
+      GRANT SELECT, INSERT ON employees TO 'john'@'localhost';
+      ```
+    - 모든 테이블에 권한 부여
+      ```sql
+      GRANT SELECT, INSERT ON database_name.* TO 'username'@'hostname';
+      ```
+
+  - ***권한 철회(REVOKE)***
+    ```sql
+    REVOKE SELECT, INSERT ON database_name.table_name FROM 'username'@'hostname';
+    ```
+    - employees테이블에 대한 john의 INSERT 권한 철회.
+      ```sql
+      REVOKE INSERT ON employees FROM 'john'@'localhost';
+      ```
+
+- **역할(Role) 관리**
+
