@@ -249,5 +249,7 @@ SET PERSIST max_connections = 200;
 
 ## 2024.09.30. 월,
 
+## 2024.10.02. 수,
+
 
 
