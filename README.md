@@ -245,13 +245,16 @@ SET PERSIST max_connections = 200;
 
 
 
-## ***2024.10.21. 월***
+## 2024.10.21. 월
 
 ### 풀업 저항(PULL UP)과 풀다운 저항(PULL DOWN)
-  - 
 ### 부트로더
-  - 
 ### bss 세그먼트와 data 세그먼트
+  - 값이 초기화된 변수는 DS로, 그렇지 않은 변수는 bss로.
+    - ```c
+      int global variable;  // bss 4 increase
+      int global variable = 100; //DS 4 increase
+      ``` 
 
 
 
