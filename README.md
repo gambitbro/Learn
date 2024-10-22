@@ -1,5 +1,25 @@
 # Learn
-
+## lesson
+  - You can't change how people feel about you, So don't try. Just live your life and be happy.
+  - No matter how hard the past, you can always begin again.
+  - suffering is not holding you, you are holding suffering.
+  - Win in your mind and you will win in you reality.
+  - Don't tell people your plans, show them your results.
+  - Change is never painful, only the resistance to change is painful.
+  - Nothing is permanent. Don't stress yourself too much, because no matter how the bad situation is... it will change.
+  - Live one day at a time. Keep your attention in present time. Have no expectations. Make no judgements. And give up the need to know why things happen as they do. Give it up!
+  - Every situation in life is temporary. So, when life is good, make sure you enjoy and receive it fully. And when life is not so good, remember that it will not last forever and better days are on the way.
+  - Never be a prisoner of your past. It was just a lesson, not a life sentence.
+  - What people think about you is not important. What you think about yourself means everything.
+  - Don't compare your life to others. There's no comparison between the sun and the moon. They Shine when it's their time.
+  - In the end, people will judge you anyway, so don't live your life impressing others live your life impressing yourself.
+  - Don't change so people will like you. Be yourself and the right people will love the real you.
+  - All that we are is the result of what we have THOUGHT. The mind is everything. what we think, we BECOME.
+  - Life is the most difficult exam. Many people fail because they try to copy others, not realizing that everyone has a different question paper.
+  - Don't be jealous with anyone. Don't compete with anyone. Just focus on becoming the best version of yourself.
+  - The less you care about what people think, the happier you will be.
+  - Begin each day with optimism and end each day with forgiveness. Happiness in life begins and ends within your heart.
+  -  
 ## 2024.09.23. 월, DB
 
   - **⚛️트랜잭션(Transaction)**
@@ -19,9 +39,6 @@
 
     - **D**urability(지속성)
       - 트랜잭션이 성공적으로 완료되면, 그 결과는 영구적으로 저장되어 시스템이 실패하더라도 보존되는 특성. 예를 들어, 서버가 다운되거나 시스템 오류가 발생해도 트랜잭션에 의해 변경된 데이터는 손실되지 않아야 한다.
-
-
-
 
 
 ## 2024.09.24. 화, DB
@@ -79,9 +96,6 @@
     - 데이터베이스 아키텍처는 **논리적 아키텍처**와 **물리적 아키텍처**로 나누어 이해할 수 있다. 논리적 아키텍처는 사용자와 데이터베이스 간의 상호작용을 설명하고, 물리적 아키텍처는 데이터가 실제로 어떻게 저장되고 처리되는지를 다룬다. 각종 DBMS 시스템에서는 이러한 아키텍처에 따라 데이터의 일관성, 성능, 확장성, 보안을 보장하며, 최신 클라우드 기반 시스템에서는 자동화와 확장성에 중점을 두고 설계된다.
 
 
-
-
-
 ## 2024.09.25. 수, DB
 
 - SET PERSIST는 MySQL 8.0 이상 버전에서 사용되는 명령어. 시스템 변수를 **영구적으로 변경**하기 위해 사용된다. 즉, 데이터베이스 서버를 재시작하더라도 설정된 시스템 변수가 유지되도록 설정할 수 있다. 이 명령어는 기존의 SET 명령어와 달리, 설정된 값을 **MySQL 설정 파일**에 자동으로 기록해준다.
@@ -94,9 +108,6 @@
 // max_connections 값을 영구적으로 변경.
 SET PERSIST max_connections = 200;
 ```
-
-
-
 
 
 ## 2024.09.26. 목, DB
@@ -243,18 +254,39 @@ SET PERSIST max_connections = 200;
     - 최종적으로 결과가 클라이언트로 전달됨.
 
 
-
-
 ## 2024.10.21. 월
 
 ### 풀업 저항(PULL UP)과 풀다운 저항(PULL DOWN)
+  - 풀업 저항(Pull-up Resisotr)
+    - 입력 핀이 연결되지 않은 경우 핀을 논리적 '1' 상태로 유지.
+    - 논리적 '1' (Vcc).
+    - 저항을 Vcc와 입력 핀 사이에 연결.
+    
+  - 풀다운 저항(Pull-down Resistor)
+    - 입력 핀이 연결되지 않은 경우 핀을 논리적 '0' 상태로 유지.
+    - 논리적 '0' (GND).
+    - 저항을 GND와 입력 핀 사이에 연결.
+
+  - 플로팅 현상 (Floating Phenomenon)
+    - 디지털 핀이 연결되지 않거나 불안정한 상태에 있을 때 발생하는 현상. 풀업 또는 풀다운 저항을 사용해 방지할 수 있다.
 ### 부트로더
+  - 
 ### bss 세그먼트와 data 세그먼트
   - 값이 초기화된 변수는 DS로, 그렇지 않은 변수는 bss로.
     - ```c
       int global variable;  // bss 4 increase
       int global variable = 100; //DS 4 increase
-      ``` 
+      ```
+  - bss, data segment compare test
+    - 1. add uninitialized global variable increase 4 in bss
+      2. add uninitialized static variable increase 4 in bss
+      3. add initialize global variable increase 4 in DS
+      4. add initailize static variable increase 4 in DS
+
+    - how to make and see result file
+      - $ gcc src_file.c -o result
+        $ size result
+      - size 명령은 생성된 오브젝트 파일에 대한 텍스트, 데이터, BSS 세그먼트의 크기(바이트)를 리턴한다.
 
 
 
