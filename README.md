@@ -348,8 +348,11 @@ SET PERSIST max_connections = 200;
       4. add initailize static variable increase 4 in DS
 
     - how to make and see result file
-      - $ gcc src_file.c -o result
+      - you can see the size of BSS segment and DATA segment. 
+      - ```bash
+        $ gcc src_file.c -o result
         $ size result
+        ```
       - size 명령은 생성된 오브젝트 파일에 대한 텍스트, 데이터, BSS 세그먼트의 크기(바이트)를 리턴한다.
 
 
