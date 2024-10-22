@@ -19,7 +19,8 @@
   - Don't be jealous with anyone. Don't compete with anyone. Just focus on becoming the best version of yourself.
   - The less you care about what people think, the happier you will be.
   - Begin each day with optimism and end each day with forgiveness. Happiness in life begins and ends within your heart.
-  -  
+
+  
 ## 2024.09.23. 월, DB
 
   - **⚛️트랜잭션(Transaction)**
