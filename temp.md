@@ -3,9 +3,8 @@
 fun main()
 {
     val customers = 10
-    println("There are $customers customers")
-
-    println ("There are ${customers + 1} customers")
+    println("There are $customers customers")           // 10
+    println ("There are ${customers + 1} customers")    // 11
 }
 
 val year: Int = 2024
@@ -20,11 +19,4 @@ val readOnlyShapes = listOf("triangle", "square", "circle")
 println(readOnlyShapes)
 // [triangle, square, circle]
 
-
-
-
-
-
 ```
-
-
