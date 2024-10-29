@@ -356,4 +356,78 @@ SET PERSIST max_connections = 200;
       - size 명령은 생성된 오브젝트 파일에 대한 텍스트, 데이터, BSS 세그먼트의 크기(바이트)를 리턴한다.
 
 
+## 2024.10.29. 화
 
+### Callback 함수
+  - 정의: 콜백 함수는 다른 함수의 인자로 전달되어, 그 함수 내에서 특정 시점에 실행되는 함수.
+  - 목적: 특정 작업이 완료된 후에 추가적인 작업을 수행하거나, 이벤트가 발생했을 때 실행되도록 한다.
+  - 예시: 버튼 클릭 이벤트, 비동기 네트워크 응답, 파일 읽기/쓰기 완료 등.
+  - 활용
+    - 1. 비동기 처리: 네트워크 통신, 파일 처리, 타이머 등 시간이 오래 걸리는 작업을 처리할 때, 해당 작업이 완료된 후 수행할 동작을 콜백 함수로 정의.
+    - 2. 이벤트 처리: 버튼 클릭, 마우스 이동 등 사용자 인터페이스에서 발생하는 이벤트에 대응하기 위해 콜백 함수가 사용됨.
+    - 3. 함수의 동작 커스터마이징: 어떤 함수가 다른 함수에 특정 동작을 위임하고자 할 때, 콜백 함수를 전달하여 동작을 커스터마이징할 수 있다(모듈화하여 넘겨주기 편함, 추후 수정도 편함).
+
+  - Python에서의 콜백 함수
+    ```python
+    def my_callback(data, callback):
+      print("Callback function called with result: ", result)
+    
+    def process_data(data, callback):
+      result = data * 2
+      # 작업이 완료되면 콜백 함수 호출
+      callback(result)
+    
+    # 콜백 함수를 인자로 전달
+    process_data(10, my_callback)
+    ```
+  
+  - JavaScript에서의 콜백 함수
+    ```JS
+    function doTask(task, callback)
+    {
+      console.log("Doing task...");
+      // 작업 완료 후 콜백 호출
+      callback("Task complete!");
+    }
+
+    function onTaskComplete(message)
+    {
+      console.log("Callback message:", message);
+    }
+
+    // 콜백 함수를 인자로 전달
+    doTask("My Task", onTaskComplete);
+    ```
+
+  - C 언어에서의 콜백 함수
+    ```c
+    #include <stdio.h>
+
+    // 콜백 함수의 타입 정의
+    typedef void (*callback_t)(int);
+
+    // 콜백 함수
+    void my_callback(int result)
+    {
+      printf("Callback called with result: %d\n", result);
+    }
+
+    // 콜백 함수를 사용하는 함수
+    void perform_operation(int num, callback_t callback)
+    {
+      int result = num * 2;
+      // 작업 완료 후 콜백 호출
+      callback(result);
+    }
+
+    int main(void)
+    {
+      // 콜백 함수 포인터를 전달
+      perform_operation(5, my_callback);
+      
+      return 0;
+    }
+    ```
+
+###
+###
